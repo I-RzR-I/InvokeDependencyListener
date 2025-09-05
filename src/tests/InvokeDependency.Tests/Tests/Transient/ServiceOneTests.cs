@@ -1,0 +1,87 @@
+﻿// ***********************************************************************
+//  Assembly         : RzR.Shared.Services.InvokeDependency.Tests
+//  Author           : RzR
+//  Created On       : 2025-09-03 20:18
+// 
+//  Last Modified By : RzR
+//  Last Modified On : 2025-09-03 20:20
+// ***********************************************************************
+//  <copyright file="ServiceOneTests.cs" company="RzR SOFT & TECH">
+//   Copyright © RzR. All rights reserved.
+//  </copyright>
+// 
+//  <summary>
+//  </summary>
+// ***********************************************************************
+
+#region U S A G E S
+
+using InvokeDependency.Tests.Abstractions;
+using InvokeDependency.Tests.Services;
+using InvokeDependencyListener;
+using InvokeDependencyListener.Abstractions;
+using InvokeDependencyListener.Enums;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
+
+namespace InvokeDependency.Tests.Tests.Transient
+{
+    [TestClass]
+    public class ServiceOneTests
+    {
+        private static IInvokeDependencyContainer _container;
+
+        [TestInitialize]
+        public void Init() => _container = new InvokeDependencyContainer();
+
+        [TestMethod]
+        public void Invoke_Service_Test()
+        {
+            _container.RegisterService<IServiceOne, ServiceOne>(InvokeDependencyServiceLifetime.Transient);
+
+            var service = _container.GetService<IServiceOne>();
+
+            Assert.IsNotNull(service);
+
+            var serviceResult = service.GetIntValue();
+            Assert.IsNotNull(serviceResult);
+            Assert.AreEqual(1, serviceResult);
+        }
+
+        [TestMethod]
+        public void Invoke_Same_Service_Test()
+        {
+            _container.RegisterService<IServiceOne, ServiceOne>(InvokeDependencyServiceLifetime.Transient);
+
+            var service1 = _container.GetService<IServiceOne>();
+            var service2 = _container.GetService<IServiceOne>();
+
+            Assert.IsNotNull(service1);
+            Assert.IsNotNull(service2);
+
+            Assert.AreNotSame(service1, service2);
+
+            Assert.AreNotEqual(service1.GetTransientOperationId(), service2.GetTransientOperationId());
+        }
+
+        [TestMethod]
+        public void Invoke_Same_Service_2_Test()
+        {
+            var container = new InvokeDependencyContainer();
+            _container.RegisterService<IServiceOne, ServiceOne>(InvokeDependencyServiceLifetime.Transient);
+            _container.RegisterService<IServiceTwo, ServiceTwo>(InvokeDependencyServiceLifetime.Transient);
+            _container.RegisterService<IService, Service>(InvokeDependencyServiceLifetime.Transient);
+
+            var service1 = _container.GetService<IService>();
+            var service2 = _container.GetService<IService>();
+
+            Assert.IsNotNull(service1);
+            Assert.IsNotNull(service2);
+
+            Assert.AreNotSame(service1, service2);
+
+            Assert.AreNotEqual(service1.GetTransientServiceId(), service2.GetTransientServiceId());
+        }
+    }
+}
