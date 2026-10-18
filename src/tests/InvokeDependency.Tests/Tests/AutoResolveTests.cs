@@ -18,10 +18,10 @@
 
 using InvokeDependency.Tests.Abstractions;
 using InvokeDependency.Tests.Services;
-using InvokeDependencyListener;
-using InvokeDependencyListener.Abstractions;
-using InvokeDependencyListener.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RzR.Infrastructure.DependencyResolver;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
+using RzR.Infrastructure.DependencyResolver.Models;
 using System;
 
 #endregion

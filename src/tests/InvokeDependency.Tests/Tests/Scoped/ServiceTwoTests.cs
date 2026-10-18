@@ -18,9 +18,9 @@
 
 using InvokeDependency.Tests.Abstractions;
 using InvokeDependency.Tests.Services;
-using InvokeDependencyListener;
-using InvokeDependencyListener.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RzR.Infrastructure.DependencyResolver;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
 
 #endregion
 

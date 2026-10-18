@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-09-01 22:30
 // 
@@ -20,22 +20,18 @@ using System;
 
 #endregion
 
-namespace InvokeDependencyListener.Exceptions
+namespace RzR.Infrastructure.DependencyResolver.Exceptions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Exception for signalling unable service resolve errors.
     /// </summary>
     /// <seealso cref="T:Exception"/>
-    /// =================================================================================================
     public class UnableServiceResolveException : Exception
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnableServiceResolveException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// =================================================================================================
         public UnableServiceResolveException(string message) : base(message) { }
     }
 }

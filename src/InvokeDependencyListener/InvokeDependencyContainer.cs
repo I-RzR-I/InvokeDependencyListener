@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-08-07 15:39
 // 
@@ -16,48 +16,40 @@
 
 #region U S A G E S
 
-using DomainCommonExtensions.ArraysExtensions;
-using DomainCommonExtensions.CommonExtensions;
-using DomainCommonExtensions.CommonExtensions.TypeParam;
-using DomainCommonExtensions.DataTypeExtensions;
-using DomainCommonExtensions.Utilities.Ensure;
-using InvokeDependencyListener.Abstractions;
-using InvokeDependencyListener.Enums;
-using InvokeDependencyListener.Exceptions;
-using InvokeDependencyListener.Extensions;
-using InvokeDependencyListener.Helpers;
-using InvokeDependencyListener.Models;
-using InvokeDependencyListener.Store;
+using RzR.Extensions.Domain.Collections;
+using RzR.Extensions.Domain.Primitives;
+using RzR.Extensions.Domain.Reflection.TypeParam;
+using RzR.Extensions.Domain.Validation;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
+using RzR.Infrastructure.DependencyResolver.Enums;
+using RzR.Infrastructure.DependencyResolver.Exceptions;
+using RzR.Infrastructure.DependencyResolver.Extensions;
+using RzR.Infrastructure.DependencyResolver.Helpers;
+using RzR.Infrastructure.DependencyResolver.Models;
+using RzR.Infrastructure.DependencyResolver.Store;
 using System;
 using System.Linq;
 
 #endregion
 
-namespace InvokeDependencyListener
+namespace RzR.Infrastructure.DependencyResolver
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Container for invoke dependencies.
     /// </summary>
-    /// <seealso cref="T:InvokeDependencyListener.Abstractions.IInvokeDependencyContainer"/>
-    /// =================================================================================================
+    /// <seealso cref="T:RzR.Infrastructure.DependencyResolver.Abstractions.IInvokeDependencyContainer"/>
     public sealed class InvokeDependencyContainer : IInvokeDependencyContainer
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     (Immutable) the dependency resolver configuration.
         /// </summary>
-        /// =================================================================================================
         private readonly DependencyResolverConfig _dependencyResolverConfig;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     (Immutable) the services store.
         /// </summary>
-        /// =================================================================================================
         private readonly ServiceStore _store;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="InvokeDependencyContainer"/> class.
         /// </summary>
@@ -65,25 +57,20 @@ namespace InvokeDependencyListener
         ///     (Optional)
         ///     (Immutable) the dependency resolver configuration.
         /// </param>
-        /// =================================================================================================
         public InvokeDependencyContainer(DependencyResolverConfig dependencyResolverConfig = null)
         {
             _dependencyResolverConfig = dependencyResolverConfig.IfIsNull(new DependencyResolverConfig());
             _store = new ServiceStore();
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     True if disposed.
         /// </summary>
-        /// =================================================================================================
         private bool _disposed;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     True if is scoped context, false if not.
         /// </summary>
-        /// =================================================================================================
         private bool _isScopedContext;
 
         /// <inheritdoc/>
@@ -196,14 +183,12 @@ namespace InvokeDependencyListener
             _disposed = true;
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Registers the service described by lifetime.
         /// </summary>
         /// <typeparam name="TInterface">Type of the interface.</typeparam>
         /// <typeparam name="TImplementation">Type of the implementation.</typeparam>
         /// <param name="lifetime">The lifetime.</param>
-        /// =================================================================================================
         private void InternalRegisterService<TInterface, TImplementation>(
             InvokeDependencyServiceLifetime lifetime)
             where TImplementation : class, TInterface
@@ -222,14 +207,12 @@ namespace InvokeDependencyListener
                 _store.AddSingletonServiceToLocalStore<TInterface>(CreateInstance(typeof(TImplementation)));
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Registers the service described by lifetime.
         /// </summary>
         /// <typeparam name="TImplementation">Type of the implementation.</typeparam>
         /// <param name="instance">The instance.</param>
         /// <param name="lifetime">The lifetime.</param>
-        /// =================================================================================================
         private void InternalRegisterService<TImplementation>(
             TImplementation instance, InvokeDependencyServiceLifetime lifetime)
             where TImplementation : class
@@ -248,7 +231,6 @@ namespace InvokeDependencyListener
                 _store.AddSingletonServiceToLocalStore<TImplementation>(instance);
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Resolve service.
         /// </summary>
@@ -259,7 +241,6 @@ namespace InvokeDependencyListener
         /// <returns>
         ///     An object.
         /// </returns>
-        /// =================================================================================================
         private object ResolveService(InvokeDependencyServiceDescriptor descriptor)
         {
             DomainEnsure.IsNotNull(descriptor, nameof(descriptor));
@@ -288,7 +269,6 @@ namespace InvokeDependencyListener
             return serviceImplementation;
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets a singleton.
         /// </summary>
@@ -296,7 +276,6 @@ namespace InvokeDependencyListener
         /// <returns>
         ///     The singleton.
         /// </returns>
-        /// =================================================================================================
         private object GetSingleton(InvokeDependencyServiceDescriptor descriptor)
         {
             DomainEnsure.IsNotNull(descriptor, nameof(descriptor));
@@ -308,7 +287,6 @@ namespace InvokeDependencyListener
             return service;
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets a scoped.
         /// </summary>
@@ -316,7 +294,6 @@ namespace InvokeDependencyListener
         /// <returns>
         ///     The scoped.
         /// </returns>
-        /// =================================================================================================
         private object GetScoped(InvokeDependencyServiceDescriptor descriptor)
         {
             DomainEnsure.IsNotNull(descriptor, nameof(descriptor));
@@ -331,7 +308,6 @@ namespace InvokeDependencyListener
             return instance;
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Creates an instance.
         /// </summary>
@@ -339,7 +315,6 @@ namespace InvokeDependencyListener
         /// <returns>
         ///     The new instance.
         /// </returns>
-        /// =================================================================================================
         private object CreateInstance(Type implementationType)
         {
             DomainEnsure.IsNotNull(implementationType, nameof(implementationType));
@@ -350,7 +325,6 @@ namespace InvokeDependencyListener
                 VerifyAndGetServiceFunc);
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Verify and get service function.
         /// </summary>
@@ -361,7 +335,6 @@ namespace InvokeDependencyListener
         /// <returns>
         ///     An object.
         /// </returns>
-        /// =================================================================================================
         private object VerifyAndGetServiceFunc(Type serviceType)
         {
             DomainEnsure.IsNotNull(serviceType, nameof(serviceType));

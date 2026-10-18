@@ -14,8 +14,8 @@
 //  </summary>
 // ***********************************************************************
 
-using InvokeDependencyListener.Store;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RzR.Infrastructure.DependencyResolver.Store;
 using System.Linq;
 
 namespace InvokeDependency.Tests.Net45.Tests.Store

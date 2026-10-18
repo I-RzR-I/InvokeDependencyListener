@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-08-07 20:24
 // 
@@ -16,8 +16,8 @@
 
 #region U S A G E S
 
-using DomainCommonExtensions.DataTypeExtensions;
-using InvokeDependencyListener.Exceptions;
+using RzR.Extensions.Domain.Primitives;
+using RzR.Infrastructure.DependencyResolver.Exceptions;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -26,34 +26,30 @@ using System.Reflection;
 
 #endregion
 
-namespace InvokeDependencyListener.Helpers
+namespace RzR.Infrastructure.DependencyResolver.Helpers
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     A service instance build helper.
     /// </summary>
-    /// =================================================================================================
     internal class ServiceInstanceBuildHelper
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     (Immutable) the instance.
         /// </summary>
-        /// =================================================================================================
         internal static readonly ServiceInstanceBuildHelper Instance = new ServiceInstanceBuildHelper();
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Prevents a default instance of the <see cref="ServiceInstanceBuildHelper"/> class from
         ///     being created.
         /// </summary>
-        /// =================================================================================================
         private ServiceInstanceBuildHelper() { }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Creates an instance.
         /// </summary>
+        /// <exception cref="NoPublicConstructorException">
+        ///     Thrown when a No Public Constructor error condition occurs.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         ///     Thrown when the requested operation is invalid.
         /// </exception>
@@ -63,7 +59,6 @@ namespace InvokeDependencyListener.Helpers
         /// <returns>
         ///     The new instance.
         /// </returns>
-        /// =================================================================================================
         internal object CreateInstance(
             Type implementationType,
             ConcurrentDictionary<Type, Func<object[], object>> compiledFactories,
@@ -98,7 +93,6 @@ namespace InvokeDependencyListener.Helpers
             return Activator.CreateInstance(implementationType, parameters);
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Compile factory.
         /// </summary>
@@ -107,7 +101,6 @@ namespace InvokeDependencyListener.Helpers
         /// <returns>
         ///     A function delegate that yields an object.
         /// </returns>
-        /// =================================================================================================
         private Func<object[], object> CompileFactory(Type type, ConstructorInfo constructor)
         {
             var parameters = constructor.GetParameters();
@@ -126,7 +119,6 @@ namespace InvokeDependencyListener.Helpers
                 Expression.Parameter(typeof(object[]), "args")).Compile();
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets constructor parameters.
         /// </summary>
@@ -139,7 +131,6 @@ namespace InvokeDependencyListener.Helpers
         /// <returns>
         ///     An array of object.
         /// </returns>
-        /// =================================================================================================
         private object[] GetConstructorParameters(Type type, Func<Type, object> getServiceFunc, ConstructorInfo constructor = null)
         {
             constructor ??= type.GetConstructors()[0];

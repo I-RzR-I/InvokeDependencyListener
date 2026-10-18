@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-08-07 15:34
 // 
@@ -14,13 +14,11 @@
 //  </summary>
 // ***********************************************************************
 
-namespace InvokeDependencyListener.Enums
+namespace RzR.Infrastructure.DependencyResolver.Enums
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Values that represent service lifetimes.
     /// </summary>
-    /// =================================================================================================
     public enum InvokeDependencyServiceLifetime
     {
         /// <summary>

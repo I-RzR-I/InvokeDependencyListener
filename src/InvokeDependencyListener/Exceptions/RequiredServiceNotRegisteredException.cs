@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-09-01 22:54
 // 
@@ -20,23 +20,19 @@ using System;
 
 #endregion
 
-namespace InvokeDependencyListener.Exceptions
+namespace RzR.Infrastructure.DependencyResolver.Exceptions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Exception for signalling required service not registered errors.
     /// </summary>
     /// <seealso cref="T:Exception"/>
-    /// =================================================================================================
     public class RequiredServiceNotRegisteredException : Exception
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="RequiredServiceNotRegisteredException"/>
         ///     class.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// =================================================================================================
         public RequiredServiceNotRegisteredException(string message) : base(message)
         {
         }

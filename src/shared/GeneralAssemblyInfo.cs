@@ -15,8 +15,8 @@ using System.Resources;
 #endif
 
 [assembly: AssemblyCompany("RzR SOFT & TECH ®")]
-[assembly: AssemblyProduct("InvokeDependencyListener")]
-[assembly: AssemblyCopyright("Copyright © 2022-2025 RzR All rights reserved.")]
+[assembly: AssemblyProduct("RzR.Infrastructure.DependencyResolver")]
+[assembly: AssemblyCopyright("Copyright © 2022-2026 RzR All rights reserved.")]
 [assembly: AssemblyTrademark("RzR SOFT Solution™")]
 [assembly: AssemblyDescription("A straightforward, lightweight, minimalistic implementation of Dependency Injection (DI) that avoids redundant class instance initialization and promotes a cleaner, more maintainable code.")]
 
@@ -31,6 +31,6 @@ using System.Resources;
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 #endif
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyInformationalVersion("2.0.0.0")]

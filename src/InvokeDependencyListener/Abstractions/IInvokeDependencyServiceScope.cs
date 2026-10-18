@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-//  Assembly         : RzR.Shared.Services.InvokeDependencyListener
+//  Assembly         : RzR.Infrastructure.DependencyResolver
 //  Author           : RzR
 //  Created On       : 2025-08-07 15:42
 // 
@@ -20,16 +20,13 @@ using System;
 
 #endregion
 
-namespace InvokeDependencyListener.Abstractions
+namespace RzR.Infrastructure.DependencyResolver.Abstractions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Interface for invoke dependency service scope.
     /// </summary>
-    /// =================================================================================================
     public interface IInvokeDependencyServiceScope : IDisposable
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets a service.
         /// </summary>
@@ -37,10 +34,8 @@ namespace InvokeDependencyListener.Abstractions
         /// <returns>
         ///     The service.
         /// </returns>
-        /// =================================================================================================
         T GetService<T>();
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets a service.
         /// </summary>
@@ -48,7 +43,6 @@ namespace InvokeDependencyListener.Abstractions
         /// <returns>
         ///     The service.
         /// </returns>
-        /// =================================================================================================
         object GetService(Type serviceType);
     }
 }
