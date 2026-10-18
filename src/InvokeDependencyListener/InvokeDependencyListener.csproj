@@ -24,6 +24,9 @@
 		<Language>en-US</Language>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageIconUrl />
+
+		<RootNamespace>RzR.Infrastructure.DependencyResolver</RootNamespace>
+		<AssemblyName>RzR.Infrastructure.DependencyResolver</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -54,7 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DomainCommonExtensions" Version="3.2.0.4113" />
+		<PackageReference Include="RzR.Extensions.Domain" Version="7.1.0.5494" />
 	</ItemGroup>
 
 </Project>
