@@ -16,8 +16,6 @@
 
 using InvokeDependency.Tests.Abstractions;
 using InvokeDependency.Tests.Services;
-using InvokeDependencyListener;
-using InvokeDependencyListener.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

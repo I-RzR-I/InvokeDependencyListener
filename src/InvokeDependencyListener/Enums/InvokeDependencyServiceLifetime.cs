@@ -14,13 +14,11 @@
 //  </summary>
 // ***********************************************************************
 
-namespace InvokeDependencyListener.Enums
+namespace RzR.Infrastructure.DependencyResolver.Enums
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Values that represent service lifetimes.
     /// </summary>
-    /// =================================================================================================
     public enum InvokeDependencyServiceLifetime
     {
         /// <summary>

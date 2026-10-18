@@ -20,22 +20,20 @@ using System;
 
 #endregion
 
-namespace InvokeDependencyListener.Exceptions
+namespace RzR.Infrastructure.DependencyResolver.Exceptions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Exception for signalling cyclic dependency errors.
     /// </summary>
-    /// <seealso cref="T:Exception" />
-    /// =================================================================================================
+    /// <seealso cref="T:Exception">
+    ///     =================================================================================================
+    /// </seealso>
     public class CyclicDependencyException : Exception
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="CyclicDependencyException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// =================================================================================================
         public CyclicDependencyException(string message) : base(message) { }
     }
 }

@@ -16,7 +16,7 @@ using System.Resources;
 
 [assembly: AssemblyCompany("RzR SOFT & TECH ®")]
 [assembly: AssemblyProduct("InvokeDependencyListener")]
-[assembly: AssemblyCopyright("Copyright © 2022-2025 RzR All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright © 2022-2026 RzR All rights reserved.")]
 [assembly: AssemblyTrademark("RzR SOFT Solution™")]
 [assembly: AssemblyDescription("A straightforward, lightweight, minimalistic implementation of Dependency Injection (DI) that avoids redundant class instance initialization and promotes a cleaner, more maintainable code.")]
 

@@ -16,10 +16,10 @@
 
 using InvokeDependency.Tests.Net45.Abstractions;
 using InvokeDependency.Tests.Net45.Services;
-using InvokeDependencyListener;
-using InvokeDependencyListener.Abstractions;
-using InvokeDependencyListener.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RzR.Infrastructure.DependencyResolver;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
+using RzR.Infrastructure.DependencyResolver.Models;
 using System;
 
 namespace InvokeDependency.Tests.Net45.Tests

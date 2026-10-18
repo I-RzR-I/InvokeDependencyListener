@@ -14,16 +14,13 @@
 //  </summary>
 // ***********************************************************************
 
-namespace InvokeDependencyListener.Models
+namespace RzR.Infrastructure.DependencyResolver.Models
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     A dependency resolver configuration.
     /// </summary>
-    /// =================================================================================================
     public class DependencyResolverConfig
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets or sets a value indicating whether the resolve by interface.
         /// </summary>
@@ -45,22 +42,19 @@ namespace InvokeDependencyListener.Models
         /// <remarks>
         ///     It can take more execution time, as it scans the assembly and declared types.
         /// </remarks>
-        /// =================================================================================================
         public bool ResolveByInterface { get; private set; }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="DependencyResolverConfig"/> class.
         /// </summary>
-        /// =================================================================================================
         public DependencyResolverConfig() => ResolveByInterface = false;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="DependencyResolverConfig"/> class.
         /// </summary>
-        /// <param name="resolveByInterface">True if resolve by interface inheritance, false if not.</param>
-        /// =================================================================================================
+        /// <param name="resolveByInterface">
+        ///     True if resolve by interface inheritance, false if not.
+        /// </param>
         public DependencyResolverConfig(bool resolveByInterface) => ResolveByInterface = resolveByInterface;
     }
 }

@@ -16,8 +16,8 @@
 
 #region U S A G E S
 
-using InvokeDependencyListener.Store;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RzR.Infrastructure.DependencyResolver.Store;
 
 #endregion
 

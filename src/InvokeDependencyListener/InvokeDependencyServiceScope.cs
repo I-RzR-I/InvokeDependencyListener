@@ -16,52 +16,41 @@
 
 #region U S A G E S
 
-using DomainCommonExtensions.CommonExtensions;
-using DomainCommonExtensions.DataTypeExtensions;
-using DomainCommonExtensions.Utilities.Ensure;
-using InvokeDependencyListener.Abstractions;
+using RzR.Extensions.Domain.Primitives;
+using RzR.Extensions.Domain.Validation;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
 using System;
 using System.Collections.Generic;
 
 #endregion
 
-namespace InvokeDependencyListener
+namespace RzR.Infrastructure.DependencyResolver
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     An invoke dependency service scope.
     /// </summary>
-    /// <seealso cref="T:InvokeDependencyListener.Abstractions.IInvokeDependencyServiceScope"/>
-    /// =================================================================================================
+    /// <seealso cref="T:RzR.Infrastructure.DependencyResolver.Abstractions.IInvokeDependencyServiceScope"/>
     public sealed class InvokeDependencyServiceScope : IInvokeDependencyServiceScope
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     (Immutable) the dependency container.
         /// </summary>
-        /// =================================================================================================
         private readonly IInvokeDependencyContainer _container;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     (Immutable) the scoped registered instances.
         /// </summary>
-        /// =================================================================================================
         private readonly Dictionary<Type, object> _scopedInstances = new Dictionary<Type, object>();
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     True if scoped service is disposed, otherwise False.
         /// </summary>
-        /// =================================================================================================
         private bool _disposed;
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="InvokeDependencyServiceScope"/> class.
         /// </summary>
         /// <param name="container">The dependency container.</param>
-        /// =================================================================================================
         internal InvokeDependencyServiceScope(IInvokeDependencyContainer container) 
             => _container = container;
 
@@ -85,12 +74,10 @@ namespace InvokeDependencyListener
             return serviceInstance;
         }
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Performs application-defined tasks associated with freeing, releasing, or resetting
         ///     unmanaged resources.
         /// </summary>
-        /// =================================================================================================
         public void Dispose()
         {
             if (_disposed.IsTrue())

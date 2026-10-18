@@ -16,24 +16,21 @@
 
 #region U S A G E S
 
-using DomainCommonExtensions.ArraysExtensions;
-using DomainCommonExtensions.DataTypeExtensions;
+using RzR.Extensions.Domain.Collections;
+using RzR.Extensions.Domain.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 #endregion
 
-namespace InvokeDependencyListener.Extensions
+namespace RzR.Infrastructure.DependencyResolver.Extensions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     An internal type extensions.
     /// </summary>
-    /// =================================================================================================
     internal static class InternalTypeExtensions
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Gets the available types in this collection.
         /// </summary>
@@ -43,11 +40,9 @@ namespace InvokeDependencyListener.Extensions
         ///     An enumerator that allows foreach to be used to process the available types in this
         ///     collection.
         /// </returns>
-        /// =================================================================================================
         internal static IEnumerable<Type> GetAvailableTypes(this Type[] sourceAssemblyTypes, Type serviceType)
             => sourceAssemblyTypes.Where(x => x.IsAvailableForInstance(serviceType)).NotNull();
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     A Type extension method that query if 'sourceType' is available for instance.
         /// </summary>
@@ -56,14 +51,12 @@ namespace InvokeDependencyListener.Extensions
         /// <returns>
         ///     True if available for instance, false if not.
         /// </returns>
-        /// =================================================================================================
         internal static bool IsAvailableForInstance(this Type sourceType, Type serviceType)
             => sourceType.IsPublic.IsTrue() 
                && sourceType.IsInterface.IsFalse() 
                && sourceType.IsAbstract.IsFalse() 
                && serviceType.IsAssignableFrom(sourceType);
 
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     A Type extension method that query if 'sourceType' is available for instance.
         /// </summary>
@@ -71,7 +64,6 @@ namespace InvokeDependencyListener.Extensions
         /// <returns>
         ///     True if available for instance, false if not.
         /// </returns>
-        /// =================================================================================================
         internal static bool IsAvailableForInstance(this Type sourceType)
             => sourceType.IsPublic.IsTrue() 
                && sourceType.IsInterface.IsFalse() 

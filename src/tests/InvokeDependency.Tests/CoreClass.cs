@@ -1,8 +1,8 @@
 ﻿#region U S A G E S
 
-using InvokeDependencyListener;
-using InvokeDependencyListener.Abstractions;
-using InvokeDependencyListener.Models;
+using RzR.Infrastructure.DependencyResolver;
+using RzR.Infrastructure.DependencyResolver.Abstractions;
+using RzR.Infrastructure.DependencyResolver.Models;
 
 #endregion
 

@@ -20,22 +20,17 @@ using System;
 
 #endregion
 
-namespace InvokeDependencyListener.Exceptions
+namespace RzR.Infrastructure.DependencyResolver.Exceptions
 {
-    /// -------------------------------------------------------------------------------------------------
     /// <summary>
     ///     Exception for signalling no public constructor errors.
     /// </summary>
-    /// <seealso cref="T:Exception" />
-    /// =================================================================================================
     public class NoPublicConstructorException : Exception
     {
-        /// -------------------------------------------------------------------------------------------------
         /// <summary>
         ///     Initializes a new instance of the <see cref="NoPublicConstructorException" /> class.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// =================================================================================================
         public NoPublicConstructorException(string message) : base(message) { }
     }
 }
