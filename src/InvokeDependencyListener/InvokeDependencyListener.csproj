@@ -18,8 +18,8 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageDescription>A straightforward, lightweight, minimalistic implementation of Dependency Injection (DI) that avoids redundant class instance initialization and promotes a cleaner, more maintainable code.</PackageDescription>
 		<Summary>A straightforward, lightweight, minimalistic implementation of Dependency Injection (DI) that avoids redundant class instance initialization and promotes a cleaner, more maintainable code.</Summary>
-		<PackageTitle>RzR.Shared.Services (InvokeDependencyListener)</PackageTitle>
-		<Title>RzR.Shared.Services (InvokeDependencyListener)</Title>
+		<PackageTitle>RzR.Infrastructure.DependencyResolver</PackageTitle>
+		<Title>RzR.Infrastructure.DependencyResolver</Title>
 		<LangVersion>9.0</LangVersion>
 		<Language>en-US</Language>
 		<RepositoryType>GIT</RepositoryType>
@@ -27,6 +27,7 @@
 
 		<RootNamespace>RzR.Infrastructure.DependencyResolver</RootNamespace>
 		<AssemblyName>RzR.Infrastructure.DependencyResolver</AssemblyName>
+		<PackageId>RzR.Infrastructure.DependencyResolver</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
